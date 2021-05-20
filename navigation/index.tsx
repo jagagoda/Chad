@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
-import { View } from 'react-native';
-import { ColorSchemeName } from 'react-native';
-import { RootStackParamList } from '../types';
+import {View} from 'react-native';
+import {ColorSchemeName} from 'react-native';
+import {RootStackParamList} from '../types';
 import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Search from '../assets/images/search.svg';
@@ -18,14 +18,14 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import Phone from '../assets/images/phone.svg';
 import Camera from '../assets/images/videocall.svg';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
-  );
+export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
+    return (
+        <NavigationContainer
+            linking={LinkingConfiguration}
+            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <RootNavigator/>
+        </NavigationContainer>
+    );
 }
 
 // A root stack navigator is often used for displaying modals on top of all other content
@@ -33,63 +33,63 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  // @ts-ignore
+    // @ts-ignore
     return (
-    <Stack.Navigator screenOptions={{
-        headerStyle: {
-            backgroundColor: '#B6DEFD',
-            height: 124,
-            borderBottomLeftRadius: '24px',
-            borderBottomRightRadius: '24px',
-            elevation: 0,
-        },
-        headerTintColor: '#5603AD',
-        headerTitleAlign: 'left',
-        headerTitleStyle: {
-            fontWeight: '700',
-            fontSize: 36,
-            marginTop: 25,
-        }
-    }}>
-      <Stack.Screen
-          name="Root"
-          component={MainTabNavigator}
-          options={{
-          title: "Rooms",
-              headerRight: () => (
-                  <View style={{
-                      flexDirection: "row",
-                      width: 100,
-                      justifyContent: 'space-between',
-                      marginRight: 10,
-                      marginTop: 25,
-                  }}>
-                      <Search />
-                      <People />
-                  </View>
-              )
-          }}
+        <Stack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: '#B6DEFD',
+                height: 124,
+                borderBottomLeftRadius: '24px',
+                borderBottomRightRadius: '24px',
+                elevation: 0,
+            },
+            headerTintColor: '#5603AD',
+            headerTitleAlign: 'left',
+            headerTitleStyle: {
+                fontWeight: '700',
+                fontSize: 36,
+                marginTop: 25,
+            }
+        }}>
+            <Stack.Screen
+                name="Root"
+                component={MainTabNavigator}
+                options={{
+                    title: "Rooms",
+                    headerRight: () => (
+                        <View style={{
+                            flexDirection: "row",
+                            width: 100,
+                            justifyContent: 'space-between',
+                            marginRight: 10,
+                            marginTop: 25,
+                        }}>
+                            <Search/>
+                            <People/>
+                        </View>
+                    )
+                }}
 
-      />
-      <Stack.Screen
-          name="ChatRoom"
-          component={ChatRoomScreen}
-          options={({ route }) => ({
-              title: route.params.name,
-              headerRight: () => (
-                  <View style={{
-                      flexDirection: 'row',
-                      marginTop: 25,
-                      marginRight: 8,
-                      width: 110,
-                      justifyContent: "space-around",
-                  }}>
-                      <Phone />
-                      <Camera />
-                  </View>
-              )
-          }) } />
-        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-    </Stack.Navigator>
-  );
+            />
+            <Stack.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={({route}) => ({
+                    title: route.params.name,
+                    headerRight: () => (
+                        <View style={{
+                            flexDirection: 'row',
+                            marginTop: 25,
+                            marginRight: 8,
+                            width: 110,
+                            justifyContent: "space-around",
+                        }}>
+                            <Phone/>
+                            <Camera/>
+                        </View>
+                    )
+                })}/>
+            <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
+        </Stack.Navigator>
+    );
 }
