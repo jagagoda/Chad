@@ -8,14 +8,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { View } from 'react-native';
 import { ColorSchemeName } from 'react-native';
-
-import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Search from '../assets/images/search.svg';
-import Phone from '../assets/images/phone.svg';
+import ChatRoomScreen from '../screens/ChatsScreen';
 import People from '../assets/images/rooms.svg';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import Phone from '../assets/images/phone.svg';
+import Camera from '../assets/images/videocall.svg';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -70,7 +71,25 @@ function RootNavigator() {
           }}
 
       />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen
+          name="ChatRoom"
+          component={ChatRoomScreen}
+          options={({ route }) => ({
+              title: route.params.name,
+              headerRight: () => (
+                  <View style={{
+                      flexDirection: 'row',
+                      marginTop: 25,
+                      marginRight: 8,
+                      width: 110,
+                      justifyContent: "space-around",
+                  }}>
+                      <Phone />
+                      <Camera />
+                  </View>
+              )
+          }) } />
+        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
 }

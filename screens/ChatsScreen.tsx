@@ -6,6 +6,7 @@ import ChatListItem from "../components/ChatListItem";
 import chatRooms from "../data/ChatRooms";
 
 export default function ChatsScreen() {
+
   return (
     <View style={styles.container}>
    <FlatList
