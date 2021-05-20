@@ -10,7 +10,7 @@ import * as React from 'react';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
+import ChatsScreen from '../screens/ChatsScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
@@ -21,7 +21,7 @@ export default function MainTabNavigator() {
 
   return (
     <MainTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Chats"
       tabBarOptions={{
           activeTintColor: Colors.dark.tint,
       indicatorStyle: {
@@ -33,8 +33,8 @@ export default function MainTabNavigator() {
           }
       }}>
       <MainTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Chats"
+        component={ChatsScreen}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -65,7 +65,7 @@ function TabOneNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
-        component={TabOneScreen}
+        component={ChatsScreen}
         options={{ headerTitle: 'Tab One Title',
             headerShown: false}}
       />
